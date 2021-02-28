@@ -1,7 +1,7 @@
-import Head from 'next/head'
+import Home from '../src/components/Home';
 
-export default function Home() {
+export default function Page() {
   return (
-    <div>Hello</div>
+    <Home />
   )
 }
