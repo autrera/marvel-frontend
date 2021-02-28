@@ -9,26 +9,27 @@ import {
 	CardActions,
 	Button,
 } from "@material-ui/core";
-import styles from './Character.module.css';
+import styles from './Comic.module.css';
+import Config from '../../config';
 
-function Character(props) {
+function Comic(props) {
 
 	return(
 		<Card>
       <CardActionArea>
         <CardMedia
         	className={styles.thumbnail}
-          image={props.data.thumbnail.path + '.' + props.data.thumbnail.extension + "?apikey=365b3763a0102c0ba16dc631c338210c"}
-          title={props.data.name + " thumbnail"}
+          image={`${props.data.thumbnail.path}.${props.data.thumbnail.extension}?apikey=${Config.api.key}`}
+          title={`${props.data.name} thumbnail`}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.data.name}
+          <Typography noWrap gutterBottom variant="h5" component="h2">
+            {props.data.title}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-      	<Link href={`/characters/${props.data.id}`}>
+      	<Link href={`/comics/${props.data.id}`}>
 	        <Button size="small" color="primary">
 	          View
 	        </Button>
@@ -38,4 +39,4 @@ function Character(props) {
 	)
 }
 
-export default Character;
+export default Comic;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './CharactersSearch.module.css';
+import styles from './ComicsSearch.module.css';
 import {
 	Grid,
 	TextField,
@@ -7,18 +7,18 @@ import {
 	Dialog
 } from "@material-ui/core";
 import { useDispatch } from 'react-redux';
-import { fill } from '../../slices/characters.slice';
+import { fill } from '../../slices/comics.slice';
 import Config from '../../config';
 
-function CharactersSearch(props) {
-	const [comics, setComics] = useState([]);
-	const [stories, setStories] = useState([]);
-	const [characters, setCharacters] = useState([]);
+function ComicsSearch(props) {
+	const [format, setFormat] = useState("");
+	const [title, setTitle] = useState("");
+	const [issue, setIssue] = useState(null);
 	const [showSearchOptions, setShowSearchOptions] = useState(true);
 	const dispatch = useDispatch();
 
-	const fetchCharacters = async () => {
-    const res = await fetch(`${Config.api.host}/v1/public/characters?apikey=${Config.api.key}`);
+	const fetchComics = async () => {
+    const res = await fetch(`${Config.api.host}/v1/public/comics?apikey=${Config.api.key}`);
     if(res.status >= 400) {
     }
     const json = await res.json();
@@ -52,19 +52,19 @@ function CharactersSearch(props) {
 		      	<Grid container spacing={1}>
 		      		<Grid item xs={12}>
 		      			<TextField
-		      				label="Name"
+		      				label="Format"
 		      				fullWidth
 		      			/>
 		      		</Grid>
 		      		<Grid item xs={12}>
 		      			<TextField
-		      				label="Comics"
+		      				label="Title"
 		      				fullWidth
 		      			/>
 		      		</Grid>
 		      		<Grid item sm={12}>
 		      			<TextField
-		      				label="Stories"
+		      				label="Issue"
 		      				fullWidth
 		      			/>
 		      		</Grid>
@@ -81,7 +81,7 @@ function CharactersSearch(props) {
 									color="primary"
 									variant="outlined"
 									onClick={() => {
-										fetchCharacters();
+										fetchComics();
 										setShowSearchOptions(false);
 									}}
 								>
@@ -96,4 +96,4 @@ function CharactersSearch(props) {
 	)
 }
 
-export default CharactersSearch;
+export default ComicsSearch;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { allCharacters } from '../../slices/characters.slice';
-import Character from '../Character';
+import CharacterCard from '../CharacterCard';
 import {
 	Grid
 } from "@material-ui/core";
@@ -19,7 +19,7 @@ function CharactersResults(props) {
 						sm={4}
 						md={3}
 					>
-						<Character data={character} />
+						<CharacterCard data={character} />
 					</Grid>
 				))}
 			</Grid>

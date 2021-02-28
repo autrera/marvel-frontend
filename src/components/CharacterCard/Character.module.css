@@ -1,0 +1,7 @@
+.thumbnail {
+	height: 120px;
+}
+
+.actions {
+	justify-content: flex-end;
+}

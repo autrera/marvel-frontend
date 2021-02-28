@@ -1,6 +1,6 @@
 export default {
 	api: {
-		host: process.env.MARVEL_HOST,
-		key: process.env.MARVEL_API_KEY,
+		host: process.env.NEXT_PUBLIC_MARVEL_HOST,
+		key: process.env.NEXT_PUBLIC_MARVEL_API_KEY,
 	}
 }
