@@ -5,9 +5,11 @@ import styles from './PageLink.module.css';
 function PageLink({ href, children }) {
 	return(
 		<Link href={href}>
-			<div className={styles.root}>
-				<a>{children}</a>
-			</div>
+			<a>
+				<div className={styles.root}>
+					{children}
+				</div>
+			</a>
 		</Link>
 	)
 }
