@@ -8,11 +8,11 @@ import {
 } from "@material-ui/core";
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from "react-redux";
-import { append, getComicById } from '../../src/slices/comics.slice';
+import { append, getStoryById } from '../../src/slices/stories.slice';
 import Config from '../../src/config';
-import ComicHeader from '../../src/components/ComicHeader';
-import ComicCharacters from '../../src/components/ComicCharacters';
-import ComicStories from '../../src/components/ComicStories';
+import StoryHeader from '../../src/components/StoryHeader';
+import StoryCharacters from '../../src/components/StoryCharacters';
+import StoryComics from '../../src/components/StoryComics';
 
 export default function Page(props) {
 	const [loading, setLoading] = useState(true);
@@ -21,17 +21,17 @@ export default function Page(props) {
   const router = useRouter();
   const { id } = router.query;
 
-	const comic = useSelector((state) => getComicById(state, id));
+	const story = useSelector((state) => getStoryById(state, id));
 	const dispatch = useDispatch();
 
   useEffect(async () => {
-  	// We try to get the comic info from store
-  	if (comic) {
+  	// We try to get the story info from store
+  	if (story) {
   		setLoading(false);
   	}
   	// If it is not there then we go to the api
-  	if (!comic && id) {
-	    const res = await fetch(`${Config.api.host}/v1/public/comics/${id}?apikey=${Config.api.key}`);
+  	if (!story && id) {
+	    const res = await fetch(`${Config.api.host}/v1/public/stories/${id}?apikey=${Config.api.key}`);
 	    if(res.status >= 400) {
 	    }
 	    const json = await res.json();
@@ -48,7 +48,7 @@ export default function Page(props) {
 				<Grid container item spacing={1}>
 					<Grid container>
 						<Grid item xs={12}>
-							<ComicHeader comic={comic} />
+							<StoryHeader story={story} />
 						</Grid>
 					</Grid>
 					<Grid container>
@@ -59,23 +59,23 @@ export default function Page(props) {
 								onChange={(event, newTab) => {
 									setActiveTab(newTab);
 								}}
-								aria-label="Comic options">
+								aria-label="Story options">
 			          <Tab label="Characters" />
-			          <Tab label="Stories" />
+			          <Tab label="Comics" />
 			        </Tabs>
 						</Grid>
 					</Grid>
 					{ activeTab == 0 &&
 						<Grid container>
 							<Grid item xs={12}>
-								<ComicCharacters id={id} />
+								<StoryCharacters id={id} />
 							</Grid>
 						</Grid>
 					}
 					{ activeTab == 1 &&
 						<Grid container>
 							<Grid item xs={12}>
-								<ComicStories id={id} />
+								<StoryComics id={id} />
 							</Grid>
 						</Grid>
 					}

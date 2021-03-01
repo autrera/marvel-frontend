@@ -9,9 +9,9 @@ import {
 	CardActions,
 	Button,
 } from "@material-ui/core";
-import styles from './Character.module.css';
+import styles from './CharacterCard.module.css';
 
-function Character(props) {
+function CharacterCard(props) {
 
 	return(
 		<Card>
@@ -38,4 +38,4 @@ function Character(props) {
 	)
 }
 
-export default Character;
+export default CharacterCard;

@@ -9,10 +9,10 @@ import {
 	CardActions,
 	Button,
 } from "@material-ui/core";
-import styles from './Comic.module.css';
+import styles from './ComicCard.module.css';
 import Config from '../../config';
 
-function Comic(props) {
+function ComicCard(props) {
 
 	return(
 		<Card>
@@ -39,4 +39,4 @@ function Comic(props) {
 	)
 }
 
-export default Comic;
+export default ComicCard;
