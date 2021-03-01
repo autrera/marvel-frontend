@@ -20,7 +20,7 @@ function Comic(props) {
         <CardMedia
         	className={styles.thumbnail}
           image={`${props.data.thumbnail.path}.${props.data.thumbnail.extension}?apikey=${Config.api.key}`}
-          title={`${props.data.name} thumbnail`}
+          title={`${props.data.title} thumbnail`}
         />
         <CardContent>
           <Typography noWrap gutterBottom variant="h5" component="h2">
@@ -28,7 +28,7 @@ function Comic(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={styles.actions}>
       	<Link href={`/comics/${props.data.id}`}>
 	        <Button size="small" color="primary">
 	          View
