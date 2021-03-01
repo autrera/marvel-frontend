@@ -12,6 +12,7 @@ import { append, getCharacterById } from '../../src/slices/characters.slice';
 import Config from '../../src/config';
 import CharacterHeader from '../../src/components/CharacterHeader';
 import CharacterComics from '../../src/components/CharacterComics';
+import CharacterStories from '../../src/components/CharacterStories';
 
 export default function Page(props) {
 	const [loading, setLoading] = useState(true);
@@ -68,6 +69,13 @@ export default function Page(props) {
 						<Grid container>
 							<Grid item xs={12}>
 								<CharacterComics id={id} />
+							</Grid>
+						</Grid>
+					}
+					{ activeTab == 1 &&
+						<Grid container>
+							<Grid item xs={12}>
+								<CharacterStories id={id} />
 							</Grid>
 						</Grid>
 					}
