@@ -5,8 +5,9 @@ import {
 } from "@material-ui/core";
 import Config from '../../config';
 import styles from './ComicHeader.module.css';
+import PropTypes from 'prop-types';
 
-function ComicHeader({comic}) {
+const ComicHeader = ({comic}) => {
 	return(
 		<div className={styles.root}>
 			<CardMedia
@@ -23,5 +24,15 @@ function ComicHeader({comic}) {
 		</div>
 	)
 }
+
+ComicHeader.propTypes = {
+  comic: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired
+    })
+  })
+};
 
 export default ComicHeader;

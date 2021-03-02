@@ -11,8 +11,9 @@ import {
 } from "@material-ui/core";
 import styles from './StoryCard.module.css';
 import Config from '../../config';
+import PropTypes from 'prop-types';
 
-function StoryCard(props) {
+const StoryCard = (props) => {
   let thumbnailFullPath = null;
   if (props.data.thumbnail) {
     thumbnailFullPath = `${props.data.thumbnail.path}.${props.data.thumbnail.extension}?apikey=${Config.api.key}`;
@@ -43,5 +44,16 @@ function StoryCard(props) {
     </Card>
 	)
 }
+
+StoryCard.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired
+    })
+  })
+};
 
 export default StoryCard;

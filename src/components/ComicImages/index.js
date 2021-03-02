@@ -5,8 +5,9 @@ import {
 } from "@material-ui/core";
 import styles from './ComicImages.module.css';
 import Config from '../../config';
+import PropTypes from 'prop-types';
 
-function ComicImages(props) {
+const ComicImages = (props) => {
 	return(
 		<Grid container spacing={2}>
 			{props.images.map(image => (
@@ -21,5 +22,12 @@ function ComicImages(props) {
 		</Grid>
 	)
 }
+
+ComicImages.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    extension: PropTypes.string.isRequired
+  }))
+};
 
 export default ComicImages;

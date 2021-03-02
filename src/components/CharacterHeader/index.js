@@ -5,8 +5,9 @@ import {
 } from "@material-ui/core";
 import Config from '../../config';
 import styles from './CharacterHeader.module.css';
+import PropTypes from 'prop-types';
 
-function CharacterHeader({character}) {
+const CharacterHeader = ({character}) => {
 	return(
 		<div className={styles.root}>
 			<CardMedia
@@ -23,5 +24,15 @@ function CharacterHeader({character}) {
 		</div>
 	)
 }
+
+CharacterHeader.propTypes = {
+  character: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired
+    })
+  })
+};
 
 export default CharacterHeader;

@@ -4,8 +4,9 @@ import {
 	CircularProgress
 } from "@material-ui/core";
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import PropTypes from 'prop-types';
 
-function RemoteAsyncAutocomplete(props) {
+const RemoteAsyncAutocomplete = (props) => {
 	const [options, setOptions] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
@@ -62,5 +63,14 @@ function RemoteAsyncAutocomplete(props) {
     />
   )
 }
+
+RemoteAsyncAutocomplete.propTypes = {
+  id: PropTypes.number.isRequired,
+  url: PropTypes.string.isRequired,
+  textField: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  multiple: PropTypes.bool
+};
 
 export default RemoteAsyncAutocomplete;

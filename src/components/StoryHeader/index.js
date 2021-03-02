@@ -5,8 +5,9 @@ import {
 } from "@material-ui/core";
 import Config from '../../config';
 import styles from './StoryHeader.module.css';
+import PropTypes from 'prop-types';
 
-function StoryHeader({story}) {
+const StoryHeader = ({story}) => {
   let thumbnailFullPath = null;
   if (story.thumbnail) {
     thumbnailFullPath = `${story.thumbnail.path}.${story.thumbnail.extension}?apikey=${Config.api.key}`;
@@ -29,5 +30,15 @@ function StoryHeader({story}) {
 		</div>
 	)
 }
+
+StoryHeader.propTypes = {
+  story: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired
+    })
+  })
+};
 
 export default StoryHeader;

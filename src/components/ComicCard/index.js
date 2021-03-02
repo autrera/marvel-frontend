@@ -11,8 +11,9 @@ import {
 } from "@material-ui/core";
 import styles from './ComicCard.module.css';
 import Config from '../../config';
+import PropTypes from 'prop-types';
 
-function ComicCard(props) {
+const ComicCard = (props) => {
 
 	return(
 		<Card>
@@ -38,5 +39,16 @@ function ComicCard(props) {
     </Card>
 	)
 }
+
+ComicCard.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired
+    })
+  })
+};
 
 export default ComicCard;

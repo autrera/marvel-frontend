@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import {
 	Card,
 	CardActionArea,
@@ -10,16 +11,17 @@ import {
 	Button,
 } from "@material-ui/core";
 import styles from './CharacterCard.module.css';
+import Config from '../../config';
 
-function CharacterCard(props) {
+const CharacterCard = (props) => {
 
 	return(
 		<Card>
       <CardActionArea>
         <CardMedia
         	className={styles.thumbnail}
-          image={props.data.thumbnail.path + '.' + props.data.thumbnail.extension + "?apikey=365b3763a0102c0ba16dc631c338210c"}
-          title={props.data.name + " thumbnail"}
+          image={`${props.data.thumbnail.path}.${props.data.thumbnail.extension}?apikey=${Config.api.key}`}
+          title={`${props.data.name} thumbnail`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" noWrap component="h2">
@@ -37,5 +39,16 @@ function CharacterCard(props) {
     </Card>
 	)
 }
+
+CharacterCard.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired
+    })
+  }),
+};
 
 export default CharacterCard;

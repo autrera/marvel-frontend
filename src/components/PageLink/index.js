@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './PageLink.module.css';
+import PropTypes from 'prop-types';
 
-function PageLink({ href, children }) {
+const PageLink = ({ href, children }) => {
 	return(
 		<Link href={href}>
 			<a>
@@ -13,5 +14,10 @@ function PageLink({ href, children }) {
 		</Link>
 	)
 }
+
+PageLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.array.isRequired
+};
 
 export default PageLink;

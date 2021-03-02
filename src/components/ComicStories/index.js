@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { fill } from '../../slices/stories.slice';
 import Config from '../../config';
 import StoriesResults from '../StoriesResults';
+import PropTypes from 'prop-types';
 
-function ComicStories(props) {
+const ComicStories = (props) => {
 	const dispatch = useDispatch();
 
 	useEffect(async() => {
@@ -21,5 +22,9 @@ function ComicStories(props) {
 		<StoriesResults />
 	)
 }
+
+ComicStories.propTypes = {
+  id: PropTypes.number.isRequired
+};
 
 export default ComicStories;
