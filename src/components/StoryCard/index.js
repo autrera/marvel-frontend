@@ -9,19 +9,24 @@ import {
 	CardActions,
 	Button,
 } from "@material-ui/core";
-import styles from './Story.module.css';
+import styles from './StoryCard.module.css';
 import Config from '../../config';
 
 function StoryCard(props) {
-
+  let thumbnailFullPath = null;
+  if (props.data.thumbnail) {
+    thumbnailFullPath = `${props.data.thumbnail.path}.${props.data.thumbnail.extension}?apikey=${Config.api.key}`;
+  }
 	return(
 		<Card>
       <CardActionArea>
-        <CardMedia
-        	className={styles.thumbnail}
-          image={`${props.data.thumbnail.path}.${props.data.thumbnail.extension}?apikey=${Config.api.key}`}
-          title={`${props.data.title} thumbnail`}
-        />
+        { thumbnailFullPath &&
+          <CardMedia
+          	className={styles.thumbnail}
+            image={thumbnailFullPath}
+            title={`${props.data.title} thumbnail`}
+          />
+        }
         <CardContent>
           <Typography noWrap gutterBottom variant="h5" component="h2">
             {props.data.title}

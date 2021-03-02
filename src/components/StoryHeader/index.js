@@ -7,18 +7,24 @@ import Config from '../../config';
 import styles from './StoryHeader.module.css';
 
 function StoryHeader({story}) {
+  let thumbnailFullPath = null;
+  if (story.thumbnail) {
+    thumbnailFullPath = `${story.thumbnail.path}.${story.thumbnail.extension}?apikey=${Config.api.key}`;
+  }
 	return(
 		<div className={styles.root}>
-			<CardMedia
-				style={{ height: '360px' }}
-	      image={`${story.thumbnail.path}.${story.thumbnail.extension}?apikey=${Config.api.key}`}
-	      title={`${story.title} image`}
-	    />
+			{ thumbnailFullPath &&
+				<CardMedia
+					style={{ height: '360px' }}
+		      image={thumbnailFullPath}
+		      title={`${story.title} image`}
+		    />
+			}
 	    <Typography
 	    	className={styles.title}
 	    	variant="h2"
 	    >
-	    	{story.name}
+	    	{story.title}
 	    </Typography>
 		</div>
 	)
