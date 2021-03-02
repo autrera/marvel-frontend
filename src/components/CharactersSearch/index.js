@@ -17,14 +17,18 @@ function CharactersSearch(props) {
 	const [characters, setCharacters] = useState([]);
 	const [showSearchOptions, setShowSearchOptions] = useState(true);
 
-	const [selectedCharacterName, setSelectedCharacterName] = useState(null);
+	const [selectedCharacter, setSelectedCharacter] = useState(null);
+	const [selectedComics, setSelectedComics] = useState(null);
 
 	const dispatch = useDispatch();
 
 	const fetchCharacters = async () => {
 		let params = "apikey=" + Config.api.key;
-		if (selectedCharacterName) {
-			params += "&name=" + selectedCharacterName.name;
+		if (selectedCharacter) {
+			params += "&name=" + selectedCharacter.text;
+		}
+		if (selectedComics) {
+			params += "&comics=" + selectedComics.map(comic => comic.id).join(',');
 		}
     const res = await fetch(`${Config.api.host}/v1/public/characters?${params}`);
     if(res.status >= 400) {
@@ -59,18 +63,23 @@ function CharactersSearch(props) {
 	      	<div style={{ padding: '1rem' }}>
 		      	<Grid container spacing={1}>
 		      		<Grid item xs={12}>
-                <RemoteAsyncAutocomplete 
+                <RemoteAsyncAutocomplete
                   id="asynchronous-character-name"
                   url={`${Config.api.host}/v1/public/characters?apikey=${Config.api.key}&nameStartsWith=`}
                   label="Name"
-                  onChange={setSelectedCharacterName}
+                  textField="name"
+                  onChange={setSelectedCharacter}
                 />
 		      		</Grid>
 		      		<Grid item xs={12}>
-		      			<TextField
-		      				label="Comics"
-		      				fullWidth
-		      			/>
+                <RemoteAsyncAutocomplete
+                	multiple={true}
+                  id="asynchronous-comics-ids"
+                  url={`${Config.api.host}/v1/public/comics?apikey=${Config.api.key}&titleStartsWith=`}
+                  label="Comics"
+                  textField="title"
+                  onChange={setSelectedComics}
+                />
 		      		</Grid>
 		      		<Grid item sm={12}>
 		      			<TextField
