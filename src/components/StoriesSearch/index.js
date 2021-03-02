@@ -7,7 +7,7 @@ import {
 	Dialog
 } from "@material-ui/core";
 import { useDispatch } from 'react-redux';
-import { fill } from '../../slices/stories.slice';
+import { fill, startLoading, stopLoading } from '../../slices/stories.slice';
 import Config from '../../config';
 
 function StoriesSearch(props) {
@@ -18,6 +18,7 @@ function StoriesSearch(props) {
 	const dispatch = useDispatch();
 
 	const fetchStories = async () => {
+    dispatch(startLoading());
     const res = await fetch(`${Config.api.host}/v1/public/stories?apikey=${Config.api.key}`);
     if(res.status >= 400) {
     }
@@ -25,6 +26,7 @@ function StoriesSearch(props) {
     if ('data' in json) {
 	    dispatch(fill(json.data));
     }
+    dispatch(stopLoading());
 	}
 
 	return(

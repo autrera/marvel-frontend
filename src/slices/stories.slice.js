@@ -3,32 +3,39 @@ import { createSlice } from '@reduxjs/toolkit';
 export const slice = createSlice({
 	name: 'stories',
 	initialState: {
-		stories: {
-			results: []
+    loading: false,
+    data: {
+      results: []
 		},
 	},
 	reducers: {
 		fill: (state, action) => {
-			state.stories = action.payload;
+			state.data = action.payload;
 		},
 		append: (state, action) => {
-			state.stories.results = [
-				...state.stories.results,
+			state.data.results = [
+				...state.data.results,
 				action.payload
 			]
 		},
+    startLoading: (state, action) => {
+      state.loading = true;
+    },
+    stopLoading: (state, action) => {
+      state.loading = false;
+    },
 	},
 });
 
 export const { fill, append } = slice.actions;
 
 // Selectors
-export const allStories = state => state.stories.stories.results;
+export const allStories = state => state.stories.data.results;
 export const getStoryById = (state, id) => {
-	if (state.stories.stories.results.length == 0) {
+	if (state.stories.data.results.length == 0) {
 		return null;
 	}
-	const story = state.stories.stories.results.filter(story => id == story.id);
+	const story = state.stories.data.results.filter(story => id == story.id);
 	if (story.length == 0) {
 		return null;
 	}

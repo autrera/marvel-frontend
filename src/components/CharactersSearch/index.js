@@ -7,7 +7,7 @@ import {
 	Dialog
 } from "@material-ui/core";
 import { useDispatch } from 'react-redux';
-import { fill } from '../../slices/characters.slice';
+import { fil, startLoading, stopLoading } from '../../slices/characters.slice';
 import Config from '../../config';
 import RemoteAsyncAutocomplete from '../RemoteAsyncAutocomplete';
 
@@ -23,6 +23,7 @@ function CharactersSearch(props) {
 	const dispatch = useDispatch();
 
 	const fetchCharacters = async () => {
+    dispatch(startLoading());
 		let params = "apikey=" + Config.api.key;
 		if (selectedCharacter) {
 			params += "&name=" + selectedCharacter.text;
@@ -37,6 +38,7 @@ function CharactersSearch(props) {
     if ('data' in json) {
 	    dispatch(fill(json.data));
     }
+    dispatch(stopLoading());
 	}
 
 	return(

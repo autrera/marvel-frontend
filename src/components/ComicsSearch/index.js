@@ -7,7 +7,7 @@ import {
 	Dialog
 } from "@material-ui/core";
 import { useDispatch } from 'react-redux';
-import { fill } from '../../slices/comics.slice';
+import { fil, startLoading, stopLoading } from '../../slices/comics.slice';
 import Config from '../../config';
 
 function ComicsSearch(props) {
@@ -18,6 +18,7 @@ function ComicsSearch(props) {
 	const dispatch = useDispatch();
 
 	const fetchComics = async () => {
+    dispatch(startLoading());
     const res = await fetch(`${Config.api.host}/v1/public/comics?apikey=${Config.api.key}`);
     if(res.status >= 400) {
     }
@@ -25,6 +26,7 @@ function ComicsSearch(props) {
     if ('data' in json) {
 	    dispatch(fill(json.data));
     }
+    dispatch(stopLoading());
 	}
 
 	return(
