@@ -1,10 +1,9 @@
 import React from 'react';
-import styles from './Home.module.css';
 import PageLink from '../PageLink';
 
-function Home(props) {
+function SectionsLinks(props) {
 	return(
-		<div className={styles.container}>
+		<div>
 			<PageLink href="/characters" >
 				Characters
 			</PageLink>
@@ -18,4 +17,4 @@ function Home(props) {
 	)
 }
 
-export default Home;
+export default SectionsLinks;
