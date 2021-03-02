@@ -4,10 +4,15 @@ import StoriesResults from '../../src/components/StoriesResults';
 import {
 	Grid
 } from "@material-ui/core";
+import TopRightFloatingContainer from '../../src/components/TopRightFloatingContainer';
+import Menu from '../../src/components/Menu';
 
 export default function Page(props) {
 	return(
 		<div>
+      <TopRightFloatingContainer>
+        <Menu />
+      </TopRightFloatingContainer>
 			<Grid
 				container
 				spacing={2}

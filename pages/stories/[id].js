@@ -13,6 +13,8 @@ import Config from '../../src/config';
 import StoryHeader from '../../src/components/StoryHeader';
 import StoryCharacters from '../../src/components/StoryCharacters';
 import StoryComics from '../../src/components/StoryComics';
+import TopRightFloatingContainer from '../../src/components/TopRightFloatingContainer';
+import Menu from '../../src/components/Menu';
 
 export default function Page(props) {
 	const [loading, setLoading] = useState(true);
@@ -46,6 +48,9 @@ export default function Page(props) {
 		<div>
 			{ !loading &&
 				<Grid container item spacing={1}>
+          <TopRightFloatingContainer>
+            <Menu />
+          </TopRightFloatingContainer>
 					<Grid container>
 						<Grid item xs={12}>
 							<StoryHeader story={story} />

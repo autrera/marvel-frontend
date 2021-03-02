@@ -14,6 +14,8 @@ import ComicHeader from '../../src/components/ComicHeader';
 import ComicCharacters from '../../src/components/ComicCharacters';
 import ComicStories from '../../src/components/ComicStories';
 import ComicImages from '../../src/components/ComicImages';
+import TopRightFloatingContainer from '../../src/components/TopRightFloatingContainer';
+import Menu from '../../src/components/Menu';
 
 export default function Page(props) {
 	const [loading, setLoading] = useState(true);
@@ -47,6 +49,9 @@ export default function Page(props) {
 		<div>
 			{ !loading &&
 				<Grid container spacing={2}>
+          <TopRightFloatingContainer>
+            <Menu />
+          </TopRightFloatingContainer>
 					<Grid item xs={12}>
 						<Grid container>
 							<Grid item xs={12}>

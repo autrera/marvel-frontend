@@ -1,13 +1,19 @@
 import React from 'react';
 import CharactersSearch from '../../src/components/CharactersSearch';
 import CharactersResults from '../../src/components/CharactersResults';
+import SectionsLinks from '../../src/components/SectionsLinks';
 import {
 	Grid
 } from "@material-ui/core";
+import TopRightFloatingContainer from '../../src/components/TopRightFloatingContainer';
+import Menu from '../../src/components/Menu';
 
 export default function Page(props) {
 	return(
 		<div>
+      <TopRightFloatingContainer>
+        <Menu />
+      </TopRightFloatingContainer>
 			<Grid
 				container
 				spacing={2}
