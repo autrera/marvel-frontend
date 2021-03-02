@@ -1,16 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { allStories } from '../../slices/stories.slice';
+import { allStories, getLoading } from '../../slices/stories.slice';
 import StoryCard from '../StoryCard';
 import {
-	Grid
+	Grid,
+  LinearProgress
 } from "@material-ui/core";
 
 function StoriesResults(props) {
 	const stories = useSelector(allStories);
+  const loading = useSelector(getLoading);
 
 	return(
 		<Grid container spacing={2}>
+      {loading &&
+        <LinearProgress />
+      }
 			{stories.map(story => (
 				<Grid
 					key={story.id}

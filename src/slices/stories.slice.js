@@ -41,5 +41,6 @@ export const getStoryById = (state, id) => {
 	}
 	return story[0];
 }
+export const getLoading = state => state.stories.loading
 
 export default slice.reducer;

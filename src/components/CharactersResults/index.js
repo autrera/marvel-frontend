@@ -1,17 +1,22 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { allCharacters } from '../../slices/characters.slice';
+import { allCharacters, getLoading } from '../../slices/characters.slice';
 import CharacterCard from '../CharacterCard';
 import {
-	Grid
+	Grid,
+  LinearProgress
 } from "@material-ui/core";
 
 function CharactersResults(props) {
 	const characters = useSelector(allCharacters);
+  const loading = useSelector(getLoading);
 
 	return(
 		<div>
 			<Grid container spacing={2}>
+        { loading &&
+          <LinearProgress />
+        }
 				{characters.map(character => (
 					<Grid
 						key={character.id}

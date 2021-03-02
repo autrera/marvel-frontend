@@ -41,5 +41,6 @@ export const getCharacterById = (state, id) => {
 	}
 	return character[0];
 }
+export const getLoading = state => state.characters.loading
 
 export default slice.reducer;
