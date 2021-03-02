@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
+  TextField,
 	CircularProgress
 } from "@material-ui/core";
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -20,9 +21,9 @@ function RemoteAsyncAutocomplete(props) {
 	    }
 	    const json = await res.json();
 	    if ('data' in json) {
-	    	setOptions(json.data.results.map(character => ({
-	    		id: character.id,
-	    		name: character.name,
+	    	setOptions(json.data.results.map(result => ({
+	    		id: result.id,
+	    		text: result[props.textField],
 	    	})));
 	    }
     	setLoading(false);
@@ -36,11 +37,13 @@ function RemoteAsyncAutocomplete(props) {
       id={props.id}
       multiple={props.multiple || false}
       getOptionSelected={(option, value) => option.id === value.id}
-      getOptionLabel={option => option.name}
+      getOptionLabel={option => option.text}
       options={options}
       loading={loading}
       onKeyUp={event => {setSearchTerm(event.target.value);}}
-      onChange={(event, value) => {props.onChange(value);}}
+      onChange={(event, value) => {
+        props.onChange(value);
+      }}
       renderInput={params => (
         <TextField
           {...params}

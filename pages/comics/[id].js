@@ -13,6 +13,7 @@ import Config from '../../src/config';
 import ComicHeader from '../../src/components/ComicHeader';
 import ComicCharacters from '../../src/components/ComicCharacters';
 import ComicStories from '../../src/components/ComicStories';
+import ComicImages from '../../src/components/ComicImages';
 
 export default function Page(props) {
 	const [loading, setLoading] = useState(true);
@@ -45,40 +46,64 @@ export default function Page(props) {
 	return(
 		<div>
 			{ !loading &&
-				<Grid container item spacing={1}>
-					<Grid container>
-						<Grid item xs={12}>
-							<ComicHeader comic={comic} />
-						</Grid>
-					</Grid>
-					<Grid container>
-						<Grid item xs={12}>
-							<Tabs
-								indicatorColor="primary"
-								value={activeTab}
-								onChange={(event, newTab) => {
-									setActiveTab(newTab);
-								}}
-								aria-label="Comic options">
-			          <Tab label="Characters" />
-			          <Tab label="Stories" />
-			        </Tabs>
-						</Grid>
-					</Grid>
-					{ activeTab == 0 &&
+				<Grid container spacing={2}>
+					<Grid item xs={12}>
 						<Grid container>
 							<Grid item xs={12}>
-								<ComicCharacters id={id} />
+								<ComicHeader comic={comic} />
 							</Grid>
 						</Grid>
-					}
-					{ activeTab == 1 &&
 						<Grid container>
 							<Grid item xs={12}>
-								<ComicStories id={id} />
+								<Tabs
+									indicatorColor="primary"
+									value={activeTab}
+									onChange={(event, newTab) => {
+										setActiveTab(newTab);
+									}}
+									aria-label="Comic options"
+								>
+				          <Tab label="Description" />
+				          <Tab label="Images" />
+				          <Tab label="Characters" />
+				          <Tab label="Stories" />
+				        </Tabs>
 							</Grid>
 						</Grid>
-					}
+						{ activeTab == 0 &&
+							<Grid container>
+								<Grid item xs={12}>
+									<Typography
+										variant="body1"
+										style={{ padding: '1rem' }}
+									>
+										{comic.description}
+									</Typography>
+								</Grid>
+							</Grid>
+						}
+						{ activeTab == 1 &&
+							<Grid container>
+								<Grid item xs={12}>
+									<ComicImages images={comic.images} />
+								</Grid>
+							</Grid>
+						}
+						{ activeTab == 2 &&
+							<Grid container>
+								<Grid item xs={12}>
+									<ComicCharacters id={id} />
+								</Grid>
+							</Grid>
+						}
+						{ activeTab == 3 &&
+							<Grid container>
+								<Grid item xs={12}>
+									<ComicStories id={id} />
+								</Grid>
+							</Grid>
+						}
+					</Grid>
 				</Grid>
 			}
 		</div>

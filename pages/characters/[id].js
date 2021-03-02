@@ -59,7 +59,9 @@ export default function Page(props) {
 								onChange={(event, newTab) => {
 									setActiveTab(newTab);
 								}}
-								aria-label="Character options">
+								aria-label="Character options"
+							>
+			          <Tab label="Description" />
 			          <Tab label="Comics" />
 			          <Tab label="Stories" />
 			        </Tabs>
@@ -68,11 +70,23 @@ export default function Page(props) {
 					{ activeTab == 0 &&
 						<Grid container>
 							<Grid item xs={12}>
-								<CharacterComics id={id} />
+								<Typography
+									variant="body1"
+									style={{ padding: '1rem' }}
+								>
+									{character.description}
+								</Typography>
 							</Grid>
 						</Grid>
 					}
 					{ activeTab == 1 &&
+						<Grid container>
+							<Grid item xs={12}>
+								<CharacterComics id={id} />
+							</Grid>
+						</Grid>
+					}
+					{ activeTab == 2 &&
 						<Grid container>
 							<Grid item xs={12}>
 								<CharacterStories id={id} />

@@ -18,7 +18,7 @@ function ComicHeader({comic}) {
 	    	className={styles.title}
 	    	variant="h2"
 	    >
-	    	{comic.name}
+	    	{comic.title}
 	    </Typography>
 		</div>
 	)
