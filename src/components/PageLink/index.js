@@ -17,7 +17,7 @@ const PageLink = ({ href, children }) => {
 
 PageLink.propTypes = {
   href: PropTypes.string.isRequired,
-  children: PropTypes.array.isRequired
+  children: PropTypes.string.isRequired
 };
 
 export default PageLink;

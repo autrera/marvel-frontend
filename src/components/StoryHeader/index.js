@@ -22,6 +22,7 @@ const StoryHeader = ({story}) => {
 		    />
 			}
 	    <Typography
+	    	noWrap
 	    	className={styles.title}
 	    	variant="h2"
 	    >

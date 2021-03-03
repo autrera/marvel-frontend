@@ -4,7 +4,7 @@ import styles from './TopRightFloatingContainer.module.css';
 function TopRightFloatingContainer(props) {
   return(
     <div className={styles.root}>
-      {children}
+      {props.children}
     </div>
   )
 }

@@ -14,7 +14,7 @@ export const slice = createSlice({
 		},
 		append: (state, action) => {
 			state.data.results = [
-				...state.comics.data.results,
+				...state.data.results,
 				action.payload
 			]
 		},

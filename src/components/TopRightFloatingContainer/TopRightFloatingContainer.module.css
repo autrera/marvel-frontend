@@ -2,6 +2,6 @@
   position: fixed;
   top: 1rem;
   right: 1rem;
-  left: 1rem;
   text-align: right;
+  z-index: 99;
 }

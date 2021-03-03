@@ -26,7 +26,7 @@ const CharacterComics = (props) => {
 }
 
 CharacterComics.propTypes = {
-  id: PropTypes.number.isRequired
+  id: PropTypes.string.isRequired
 };
 
 export default CharacterComics;

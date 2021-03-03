@@ -11,7 +11,7 @@ const ComicImages = (props) => {
 	return(
 		<Grid container spacing={2}>
 			{props.images.map(image => (
-				<Grid item md={4}>
+				<Grid key={image.path} item md={4}>
 	        <CardMedia
 	        	className={styles.thumbnail}
 	          image={`${image.path}.${image.extension}?apikey=${Config.api.key}`}

@@ -15,7 +15,9 @@ function CharactersResults(props) {
 		<div>
 			<Grid container spacing={2}>
         { loading &&
-          <LinearProgress />
+					<Grid item xs={12}>
+	          <LinearProgress />
+					</Grid>
         }
 				{characters.map(character => (
 					<Grid

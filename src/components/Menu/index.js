@@ -5,13 +5,14 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SectionsLinks from '../SectionsLinks';
+import styles from './Menu.module.css';
 
 function Menu(props) {
   const [showDrawer, setShowDrawer] = useState(false);
 
   return(
     <div>
-      <IconButton 
+      <IconButton
         aria-label="delete"
         onClick={() => {
           setShowDrawer(true);
@@ -19,9 +20,9 @@ function Menu(props) {
       >
         <MenuIcon />
       </IconButton>
-      <Drawer 
-        anchor="right" 
-        open={showDrawer} 
+      <Drawer
+        anchor="right"
+        open={showDrawer}
         onClose={() => { setShowDrawer(false); }}
       >
         <div className={styles.linksContainer}>

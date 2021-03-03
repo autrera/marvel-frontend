@@ -82,7 +82,7 @@ export default function Page(props) {
 										variant="body1"
 										style={{ padding: '1rem' }}
 									>
-										{comic.description}
+										{comic.description || "No description."}
 									</Typography>
 								</Grid>
 							</Grid>

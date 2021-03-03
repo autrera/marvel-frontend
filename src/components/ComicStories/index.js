@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fil, startLoading, stopLoading } from '../../slices/stories.slice';
+import { fill, startLoading, stopLoading } from '../../slices/stories.slice';
 import Config from '../../config';
 import StoriesResults from '../StoriesResults';
 import PropTypes from 'prop-types';
@@ -26,7 +26,7 @@ const ComicStories = (props) => {
 }
 
 ComicStories.propTypes = {
-  id: PropTypes.number.isRequired
+  id: PropTypes.string.isRequired
 };
 
 export default ComicStories;

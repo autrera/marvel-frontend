@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CharactersSearch from '../../src/components/CharactersSearch';
 import CharactersResults from '../../src/components/CharactersResults';
 import SectionsLinks from '../../src/components/SectionsLinks';

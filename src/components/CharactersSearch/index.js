@@ -7,18 +7,15 @@ import {
 	Dialog
 } from "@material-ui/core";
 import { useDispatch } from 'react-redux';
-import { fil, startLoading, stopLoading } from '../../slices/characters.slice';
+import { fill, startLoading, stopLoading } from '../../slices/characters.slice';
 import Config from '../../config';
 import RemoteAsyncAutocomplete from '../RemoteAsyncAutocomplete';
 
 function CharactersSearch(props) {
-	const [comics, setComics] = useState([]);
-	const [stories, setStories] = useState([]);
-	const [characters, setCharacters] = useState([]);
 	const [showSearchOptions, setShowSearchOptions] = useState(true);
-
 	const [selectedCharacter, setSelectedCharacter] = useState(null);
 	const [selectedComics, setSelectedComics] = useState(null);
+	const [stories, setStories] = useState("");
 
 	const dispatch = useDispatch();
 
@@ -30,6 +27,9 @@ function CharactersSearch(props) {
 		}
 		if (selectedComics) {
 			params += "&comics=" + selectedComics.map(comic => comic.id).join(',');
+		}
+		if (stories) {
+			params += "&stories=" + stories;
 		}
     const res = await fetch(`${Config.api.host}/v1/public/characters?${params}`);
     if(res.status >= 400) {
@@ -87,6 +87,8 @@ function CharactersSearch(props) {
 		      			<TextField
 		      				label="Stories"
 		      				fullWidth
+		      				onChange={event => { setStories(event.target.value); }}
+		      				value={stories}
 		      			/>
 		      		</Grid>
 		      		<Grid item sm={12} className={styles.actions}>

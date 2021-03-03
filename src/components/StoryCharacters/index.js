@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fil, startLoading, stopLoading } from '../../slices/characters.slice';
+import { fill, startLoading, stopLoading } from '../../slices/characters.slice';
 import Config from '../../config';
 import CharactersResults from '../CharactersResults';
 import PropTypes from 'prop-types';
@@ -26,7 +26,7 @@ const StoryCharacters = (props) => {
 }
 
 StoryCharacters.propTypes = {
-  id: PropTypes.number.isRequired
+  id: PropTypes.string.isRequired
 };
 
 export default StoryCharacters;

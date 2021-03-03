@@ -13,8 +13,10 @@ function StoriesResults(props) {
 
 	return(
 		<Grid container spacing={2}>
-      {loading &&
-        <LinearProgress />
+			{ loading &&
+				<Grid item xs={12}>
+          <LinearProgress />
+				</Grid>
       }
 			{stories.map(story => (
 				<Grid

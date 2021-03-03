@@ -27,7 +27,7 @@ export const slice = createSlice({
 	},
 });
 
-export const { fill, append } = slice.actions;
+export const { fill, append, startLoading, stopLoading } = slice.actions;
 
 // Selectors
 export const allStories = state => state.stories.data.results;

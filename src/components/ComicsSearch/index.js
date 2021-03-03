@@ -7,7 +7,7 @@ import {
 	Dialog
 } from "@material-ui/core";
 import { useDispatch } from 'react-redux';
-import { fil, startLoading, stopLoading } from '../../slices/comics.slice';
+import { fill, startLoading, stopLoading } from '../../slices/comics.slice';
 import Config from '../../config';
 
 function ComicsSearch(props) {

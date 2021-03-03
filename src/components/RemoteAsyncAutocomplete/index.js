@@ -65,7 +65,7 @@ const RemoteAsyncAutocomplete = (props) => {
 }
 
 RemoteAsyncAutocomplete.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   textField: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,

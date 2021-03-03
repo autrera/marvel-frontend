@@ -13,8 +13,10 @@ function ComicsResults(props) {
 
 	return(
 		<Grid container spacing={2}>
-      {loading &&
-        <LinearProgress />
+      { loading &&
+				<Grid item xs={12}>
+          <LinearProgress />
+				</Grid>
       }
 			{comics.map(comic => (
 				<Grid
