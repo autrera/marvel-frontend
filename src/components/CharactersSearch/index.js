@@ -21,7 +21,7 @@ function CharactersSearch(props) {
 
 	const fetchCharacters = async () => {
     dispatch(startLoading());
-		let params = "apikey=" + Config.api.key;
+		let params = `apikey=${Config.api.key}&orderBy=name`;
 		if (selectedCharacter) {
 			params += "&name=" + selectedCharacter.text;
 		}
@@ -39,6 +39,14 @@ function CharactersSearch(props) {
 	    dispatch(fill(json.data));
     }
     dispatch(stopLoading());
+    closeFilters();
+	}
+
+	const closeFilters = () => {
+		setSelectedCharacter(null);
+		setSelectedComics(null);
+		setStories("");
+		setShowSearchOptions(false);
 	}
 
 	return(
@@ -58,7 +66,7 @@ function CharactersSearch(props) {
 	        maxWidth="xs"
 	        open={true}
 	        onClose={() => {
-	        	setShowSearchOptions(false);
+	        	closeFilters();
         	}}
 	        aria-labelledby="max-width-dialog-title"
 	      >
@@ -94,7 +102,7 @@ function CharactersSearch(props) {
 		      		<Grid item sm={12} className={styles.actions}>
 								<Button
 									onClick={() => {
-										setShowSearchOptions(false);
+					        	closeFilters();
 									}}
 								>
 									Cancel
@@ -105,7 +113,6 @@ function CharactersSearch(props) {
 									variant="outlined"
 									onClick={() => {
 										fetchCharacters();
-										setShowSearchOptions(false);
 									}}
 								>
 									Search

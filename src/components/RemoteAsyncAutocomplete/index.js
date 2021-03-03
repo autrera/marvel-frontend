@@ -10,6 +10,7 @@ const RemoteAsyncAutocomplete = (props) => {
 	const [options, setOptions] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
+  const idField = props.idField || "id";
 
 	useEffect(() => {
 		if (searchTerm === "") {
@@ -22,10 +23,12 @@ const RemoteAsyncAutocomplete = (props) => {
 	    }
 	    const json = await res.json();
 	    if ('data' in json) {
-	    	setOptions(json.data.results.map(result => ({
-	    		id: result.id,
-	    		text: result[props.textField],
-	    	})));
+	    	setOptions(json.data.results.map(result => {
+          return {
+  	    		id: result[idField],
+  	    		text: result[props.textField],
+          }
+	    	}));
 	    }
     	setLoading(false);
     }, 250);

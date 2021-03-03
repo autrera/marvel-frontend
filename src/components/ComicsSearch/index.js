@@ -9,17 +9,31 @@ import {
 import { useDispatch } from 'react-redux';
 import { fill, startLoading, stopLoading } from '../../slices/comics.slice';
 import Config from '../../config';
+import RemoteAsyncAutocomplete from '../RemoteAsyncAutocomplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { formatTypes } from '../../constants';
 
 function ComicsSearch(props) {
-	const [format, setFormat] = useState("");
+	const [selectedFormat, setSelectedFormat] = useState(null);
+	const [issue, setIssue] = useState("");
 	const [title, setTitle] = useState("");
-	const [issue, setIssue] = useState(null);
 	const [showSearchOptions, setShowSearchOptions] = useState(true);
+
 	const dispatch = useDispatch();
 
 	const fetchComics = async () => {
     dispatch(startLoading());
-    const res = await fetch(`${Config.api.host}/v1/public/comics?apikey=${Config.api.key}`);
+		let params = `apikey=${Config.api.key}&orderBy=issueNumber`;
+		if (selectedFormat) {
+			params += "&format=" + selectedFormat.id;
+		}
+		if (title) {
+			params += "&titleStartsWith=" + title;
+		}
+		if (issue) {
+			params += "&issueNumber=" + issue;
+		}
+    const res = await fetch(`${Config.api.host}/v1/public/comics?${params}`);
     if(res.status >= 400) {
     }
     const json = await res.json();
@@ -27,6 +41,14 @@ function ComicsSearch(props) {
 	    dispatch(fill(json.data));
     }
     dispatch(stopLoading());
+  	closeFilters();
+	}
+
+	const closeFilters = () => {
+    setSelectedFormat(null);
+    setIssue("");
+    setTitle("");
+    setShowSearchOptions(false);
 	}
 
 	return(
@@ -46,34 +68,53 @@ function ComicsSearch(props) {
 	        maxWidth="xs"
 	        open={true}
 	        onClose={() => {
-	        	setShowSearchOptions(false);
+	        	closeFilters();
         	}}
 	        aria-labelledby="max-width-dialog-title"
 	      >
 	      	<div style={{ padding: '1rem' }}>
 		      	<Grid container spacing={1}>
 		      		<Grid item xs={12}>
-		      			<TextField
-		      				label="Format"
-		      				fullWidth
-		      			/>
+						    <Autocomplete
+						      id="comic-format-filter"
+						      getOptionSelected={(option, value) => option.id === value.id}
+						      getOptionLabel={option => option.id.replace(/\b\w/g, l => l.toUpperCase())}
+						      options={formatTypes}
+						      onChange={(event, value) => {
+						      	setSelectedFormat(value);
+						      }}
+						      renderInput={params => (
+						        <TextField
+						          {...params}
+						          label="Format"
+						        />
+						      )}
+						    />
 		      		</Grid>
 		      		<Grid item xs={12}>
 		      			<TextField
 		      				label="Title"
 		      				fullWidth
+		      				value={title}
+		      				onChange={event => {
+		      					setTitle(event.target.value);
+		      				}}
 		      			/>
 		      		</Grid>
 		      		<Grid item sm={12}>
 		      			<TextField
 		      				label="Issue"
 		      				fullWidth
+		      				value={issue}
+		      				onChange={event => {
+		      					setIssue(event.target.value);
+		      				}}
 		      			/>
 		      		</Grid>
 		      		<Grid item sm={12} className={styles.actions}>
 								<Button
 									onClick={() => {
-										setShowSearchOptions(false);
+					        	closeFilters();
 									}}
 								>
 									Cancel
@@ -84,7 +125,6 @@ function ComicsSearch(props) {
 									variant="outlined"
 									onClick={() => {
 										fetchComics();
-										setShowSearchOptions(false);
 									}}
 								>
 									Search
