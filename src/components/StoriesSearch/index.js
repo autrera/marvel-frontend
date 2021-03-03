@@ -28,9 +28,10 @@ function StoriesSearch(props) {
 			params += "&comics=" + selectedComics.map(comic => comic.id).join(',');
 		}
     const res = await fetch(`${Config.api.host}/v1/public/stories?${params}`);
-    if(res.status >= 400) {
-    }
     const json = await res.json();
+    if(res.status >= 400) {
+    	alert(`Code: ${json.code}\nMessage: ${json.status}`);
+    }
     if ('data' in json) {
 	    dispatch(fill(json.data));
     }

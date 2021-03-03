@@ -19,9 +19,10 @@ const RemoteAsyncAutocomplete = (props) => {
     const delayDebounceFn = setTimeout(async() => {
     	setLoading(true);
 	    const res = await fetch(props.url + searchTerm);
+      const json = await res.json();
 	    if(res.status >= 400) {
+        alert(`Code: ${json.code}\nMessage: ${json.status}`);
 	    }
-	    const json = await res.json();
 	    if ('data' in json) {
 	    	setOptions(json.data.results.map(result => {
           return {

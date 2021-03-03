@@ -11,9 +11,10 @@ const ComicStories = (props) => {
 	useEffect(async() => {
     dispatch(startLoading());
     const res = await fetch(`${Config.api.host}/v1/public/comics/${props.id}/stories?apikey=${Config.api.key}`);
-    if(res.status >= 400) {
-    }
     const json = await res.json();
+    if(res.status >= 400) {
+        alert(`Code: ${json.code}\nMessage: ${json.status}`);
+    }
     if ('data' in json) {
 	    dispatch(fill(json.data));
     }
