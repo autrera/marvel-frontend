@@ -94,6 +94,7 @@ function ComicsSearch(props) {
 		      		</Grid>
 		      		<Grid item xs={12}>
 		      			<TextField
+		      				id="comics-title-filter"
 		      				label="Title"
 		      				fullWidth
 		      				value={title}
@@ -104,6 +105,7 @@ function ComicsSearch(props) {
 		      		</Grid>
 		      		<Grid item sm={12}>
 		      			<TextField
+		      				id="comics-issue-filter"
 		      				label="Issue"
 		      				fullWidth
 		      				value={issue}

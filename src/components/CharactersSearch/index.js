@@ -94,6 +94,7 @@ function CharactersSearch(props) {
 		      		</Grid>
 		      		<Grid item sm={12}>
 		      			<TextField
+		      				id="character-stories-filter"
 		      				label="Stories"
 		      				fullWidth
 		      				onChange={event => { setStories(event.target.value); }}
